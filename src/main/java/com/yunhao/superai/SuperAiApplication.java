@@ -4,7 +4,7 @@ import com.yunhao.superai.rag.PgVectorVectorStoreConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(exclude = PgVectorVectorStoreConfig.class)
+@SpringBootApplication
 public class SuperAiApplication {
 
     public static void main(String[] args) {
