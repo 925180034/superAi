@@ -3,6 +3,18 @@ spring:
     name: superAi
   profiles:
     active: local
+  ai:
+    dashscope:
+      api-key: your-api-key
+      chat:
+        options:
+          model: qwen-plus
+    mcp:
+      client:
+        stdio:
+          servers-configuration: classpath:mcp-servers.json
+
+
 server:
   port: 8123
   servlet:
