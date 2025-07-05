@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 public class ImageSearchTool {
 
-    // 替换为你的 Pexels API 密钥（需从官网申请）
+    // 从配置文件中读取 API 密钥
     @Value("${pexels.api-key:}")
     private String apiKey;
 
@@ -27,6 +27,10 @@ public class ImageSearchTool {
     @Tool(description = "search image from web")
     public String searchImage(@ToolParam(description = "Search query keyword") String query) {
         try {
+            // 检查 API 密钥是否配置
+            if (StrUtil.isBlank(apiKey)) {
+                return "Error: Pexels API key not configured. Please set pexels.api-key in your configuration file.";
+            }
             return String.join(",", searchMediumImages(query));
         } catch (Exception e) {
             return "Error search image: " + e.getMessage();
@@ -42,7 +46,7 @@ public class ImageSearchTool {
     public List<String> searchMediumImages(String query) {
         // 设置请求头（包含API密钥）
         Map<String, String> headers = new HashMap<>();
-        headers.put("Authorization", API_KEY);
+        headers.put("Authorization", apiKey);
 
         // 设置请求参数（仅包含query，可根据文档补充page、per_page等参数）
         Map<String, Object> params = new HashMap<>();
@@ -66,4 +70,3 @@ public class ImageSearchTool {
                 .collect(Collectors.toList());
     }
 }
-
