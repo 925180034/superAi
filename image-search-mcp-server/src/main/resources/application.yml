@@ -2,6 +2,8 @@ spring:
   application:
     name: image-search-mcp-server
   profiles:
-    active: sse
+    active: stdio
 server:
   port: 8127
+pexels:
+  api-key: ${PEXELS_API_KEY:}
