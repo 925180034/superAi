@@ -1,6 +1,7 @@
 application-local.yml
 tmp
 mcp-servers.json
+application-prod.yml
 
 HELP.md
 target/
