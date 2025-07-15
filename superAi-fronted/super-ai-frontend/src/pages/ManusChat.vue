@@ -1,7 +1,7 @@
 <template>
   <Chat 
     title="AI 超级智能体"
-    api-url="http://localhost:8123/api/ai/manus/chat"
+    api-url="/api/ai/manus/chat"
     stream-mode="newMessage"
     ai-avatar-type="manus"
   />

@@ -1,7 +1,7 @@
 <template>
   <Chat 
     title="AI 恋爱大师" 
-    api-url="http://localhost:8123/api/ai/love_app/chat/sse"
+    api-url="/api/ai/love_app/chat/sse"
     :generate-chat-id="true"
     ai-avatar-type="love"
   />
