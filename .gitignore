@@ -3,6 +3,7 @@ tmp
 mcp-servers.json
 application-prod.yml
 docker-compose.yml
+/node_modules
 
 HELP.md
 target/
