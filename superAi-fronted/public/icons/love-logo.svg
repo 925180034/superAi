@@ -1,0 +1,20 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="loveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9a9e"/>
+      <stop offset="100%" stop-color="#fecfef"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 心形主体 -->
+  <path d="M24 42L20.55 38.89C11.5 30.81 5.5 25.5 5.5 18.5C5.5 13.42 9.42 9.5 14.5 9.5C17.24 9.5 19.91 10.81 21.5 12.93C23.09 10.81 25.76 9.5 28.5 9.5C33.58 9.5 37.5 13.42 37.5 18.5C37.5 25.5 31.5 30.81 22.45 38.89L24 42Z" fill="url(#loveGradient)"/>
+  
+  <!-- AI 装饰元素 -->
+  <circle cx="16" cy="18" r="2" fill="white" opacity="0.8"/>
+  <circle cx="26" cy="18" r="2" fill="white" opacity="0.8"/>
+  <circle cx="21" cy="25" r="1.5" fill="white" opacity="0.6"/>
+  
+  <!-- 心跳线条装饰 -->
+  <path d="M12 6 L14 4 L16 8 L18 2 L20 6" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M28 6 L30 4 L32 8 L34 2 L36 6" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.7"/>
+</svg>

@@ -9,9 +9,8 @@ import TheWelcome from './components/TheWelcome.vue'
       <h1>Super AI</h1>
     </div>
     <nav class="app-nav">
-      <router-link to="/" class="nav-link">主页</router-link>
-      <router-link to="/love" class="nav-link">AI 恋爱大师</router-link>
-      <router-link to="/manus" class="nav-link">AI 超级智能体</router-link>
+      <router-link to="/fitness" class="nav-link">AI 健身助手</router-link>
+      <router-link to="/manus" class="nav-link">AI 超级助手</router-link>
     </nav>
   </header>
   <main class="app-main">

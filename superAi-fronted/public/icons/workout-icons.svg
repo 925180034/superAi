@@ -1,0 +1,78 @@
+<svg width="200" height="100" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fitnessGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7e5f"/>
+      <stop offset="100%" stop-color="#feb47b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 跑步图标 -->
+  <g id="running-icon">
+    <!-- 身体 -->
+    <circle cx="20" cy="15" r="4" fill="url(#fitnessGrad)"/>
+    <path d="M20 19 L18 35 L22 35 Z" fill="url(#fitnessGrad)"/>
+    <path d="M18 35 L16 45 L20 45 Z" fill="url(#fitnessGrad)"/>
+    <path d="M22 35 L26 45 L22 45 Z" fill="url(#fitnessGrad)"/>
+    <!-- 手臂 -->
+    <path d="M18 25 L12 30" stroke="url(#fitnessGrad)" stroke-width="2"/>
+    <path d="M22 25 L28 22" stroke="url(#fitnessGrad)" stroke-width="2"/>
+  </g>
+  
+  <!-- 举重图标 -->
+  <g id="weightlifting-icon" transform="translate(50, 0)">
+    <circle cx="20" cy="15" r="4" fill="url(#fitnessGrad)"/>
+    <rect x="18" y="19" width="4" height="16" fill="url(#fitnessGrad)"/>
+    <!-- 杠铃 -->
+    <rect x="10" y="8" width="20" height="3" rx="1.5" fill="url(#fitnessGrad)"/>
+    <rect x="8" y="6" width="4" height="7" rx="2" fill="url(#fitnessGrad)"/>
+    <rect x="28" y="6" width="4" height="7" rx="2" fill="url(#fitnessGrad)"/>
+    <!-- 手臂 -->
+    <path d="M16 22 L12 12" stroke="url(#fitnessGrad)" stroke-width="2"/>
+    <path d="M24 22 L28 12" stroke="url(#fitnessGrad)" stroke-width="2"/>
+  </g>
+  
+  <!-- 瑜伽图标 -->
+  <g id="yoga-icon" transform="translate(100, 0)">
+    <circle cx="20" cy="15" r="4" fill="url(#fitnessGrad)"/>
+    <!-- 身体做瑜伽姿势 -->
+    <path d="M20 19 Q15 25 10 35 Q15 40 20 35 Q25 40 30 35 Q25 25 20 19 Z" fill="url(#fitnessGrad)" opacity="0.8"/>
+    <!-- 手臂伸展 -->
+    <path d="M10 35 Q5 30 8 25" stroke="url(#fitnessGrad)" stroke-width="2"/>
+    <path d="M30 35 Q35 30 32 25" stroke="url(#fitnessGrad)" stroke-width="2"/>
+  </g>
+  
+  <!-- 游泳图标 -->
+  <g id="swimming-icon" transform="translate(150, 0)">
+    <circle cx="15" cy="15" r="4" fill="url(#fitnessGrad)"/>
+    <!-- 身体 -->
+    <ellipse cx="20" cy="25" rx="8" ry="4" fill="url(#fitnessGrad)"/>
+    <!-- 水波纹 -->
+    <path d="M5 35 Q10 32 15 35 Q20 32 25 35 Q30 32 35 35" stroke="url(#fitnessGrad)" stroke-width="2" fill="none"/>
+    <path d="M5 40 Q10 37 15 40 Q20 37 25 40 Q30 37 35 40" stroke="url(#fitnessGrad)" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+  
+  <!-- 心率图标 -->
+  <g id="heartrate-icon" transform="translate(25, 60)">
+    <path d="M20 15 L17 12 Q12 7 7 12 Q2 17 7 22 L20 35 L33 22 Q38 17 33 12 Q28 7 23 12 L20 15 Z" fill="#ff4757"/>
+    <!-- 心电图线 -->
+    <path d="M5 45 L10 45 L12 35 L14 50 L16 25 L18 45 L35 45" stroke="#3b82f6" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- 计时器图标 -->
+  <g id="timer-icon" transform="translate(75, 60)">
+    <circle cx="20" cy="25" r="15" fill="none" stroke="url(#fitnessGrad)" stroke-width="3"/>
+    <path d="M20 15 L20 25 L28 30" stroke="url(#fitnessGrad)" stroke-width="2"/>
+    <!-- 顶部按钮 -->
+    <rect x="18" y="8" width="4" height="4" rx="2" fill="url(#fitnessGrad)"/>
+  </g>
+  
+  <!-- 奖杯图标 -->
+  <g id="trophy-icon" transform="translate(125, 60)">
+    <path d="M15 15 L15 25 Q15 30 20 30 Q25 30 25 25 L25 15 Z" fill="#ffd700"/>
+    <rect x="18" y="30" width="4" height="8" fill="#ffd700"/>
+    <rect x="15" y="38" width="10" height="3" fill="#ffd700"/>
+    <!-- 奖杯把手 -->
+    <path d="M15 18 Q10 18 10 22 Q10 26 15 26" stroke="#ffd700" stroke-width="2" fill="none"/>
+    <path d="M25 18 Q30 18 30 22 Q30 26 25 26" stroke="#ffd700" stroke-width="2" fill="none"/>
+  </g>
+</svg>

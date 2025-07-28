@@ -5,12 +5,12 @@
       <p>在这里，您可以体验到前沿的 AI 技术，选择一个应用开始您的智能之旅吧！</p>
     </div>
     <div class="app-cards">
-      <router-link to="/love" class="card">
-        <h3>❤️ AI 恋爱大师</h3>
-        <p>您的贴心伙伴，随时倾听，提供情感支持与建议。</p>
+      <router-link to="/fitness" class="card">
+        <h3>💪 AI 健身助手</h3>
+        <p>您的专业健身伴侣，提供个性化训练方案、运动指导和健康建议。</p>
       </router-link>
       <router-link to="/manus" class="card">
-        <h3>🤖 AI 超级智能体</h3>
+        <h3>🤖 AI 超级助手</h3>
         <p>您的全能助手，连接多领域工具，高效完成各项任务。</p>
       </router-link>
     </div>

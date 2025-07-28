@@ -1,0 +1,46 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7e5f"/>
+      <stop offset="100%" stop-color="#feb47b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 主圆形背景 -->
+  <circle cx="32" cy="32" r="28" fill="url(#mainGradient)"/>
+  
+  <!-- 内圆装饰 -->
+  <circle cx="32" cy="32" r="20" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+  
+  <!-- AI 大脑图案 -->
+  <path d="M20 28 Q32 20 44 28 Q40 36 32 32 Q24 36 20 28 Z" fill="white" opacity="0.9"/>
+  
+  <!-- 神经网络节点 -->
+  <circle cx="26" cy="26" r="2" fill="url(#accentGradient)"/>
+  <circle cx="32" cy="24" r="2" fill="url(#accentGradient)"/>
+  <circle cx="38" cy="26" r="2" fill="url(#accentGradient)"/>
+  <circle cx="26" cy="32" r="2" fill="url(#accentGradient)"/>
+  <circle cx="38" cy="32" r="2" fill="url(#accentGradient)"/>
+  
+  <!-- 连接线 -->
+  <path d="M26 26 L32 24 L38 26" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  <path d="M26 26 L26 32" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  <path d="M38 26 L38 32" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  <path d="M26 32 L38 32" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  
+  <!-- 运动元素 - 哑铃 -->
+  <rect x="28" y="40" width="8" height="3" rx="1.5" fill="white" opacity="0.8"/>
+  <rect x="26" y="39" width="3" height="5" rx="1.5" fill="white" opacity="0.8"/>
+  <rect x="35" y="39" width="3" height="5" rx="1.5" fill="white" opacity="0.8"/>
+  
+  <!-- 外围装饰点 */
+  <circle cx="48" cy="16" r="2" fill="url(#accentGradient)" opacity="0.6"/>
+  <circle cx="16" cy="16" r="2" fill="url(#accentGradient)" opacity="0.6"/>
+  <circle cx="48" cy="48" r="2" fill="url(#accentGradient)" opacity="0.6"/>
+  <circle cx="16" cy="48" r="2" fill="url(#accentGradient)" opacity="0.6"/>
+</svg>

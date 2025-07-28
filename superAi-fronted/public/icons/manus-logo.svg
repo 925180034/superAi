@@ -1,0 +1,36 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="manusGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="100%" stop-color="#764ba2"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 机器人头部 -->
+  <rect x="10" y="14" width="28" height="20" rx="10" fill="url(#manusGradient)"/>
+  
+  <!-- 眼睛 -->
+  <circle cx="18" cy="22" r="3" fill="white"/>
+  <circle cx="30" cy="22" r="3" fill="white"/>
+  <circle cx="18" cy="22" r="1.5" fill="#3b82f6"/>
+  <circle cx="30" cy="22" r="1.5" fill="#3b82f6"/>
+  
+  <!-- 嘴巴 -->
+  <rect x="20" y="28" width="8" height="2" rx="1" fill="white"/>
+  
+  <!-- 天线 -->
+  <rect x="22" y="8" width="2" height="6" fill="url(#manusGradient)"/>
+  <rect x="24" y="8" width="2" height="6" fill="url(#manusGradient)"/>
+  <circle cx="23" cy="6" r="2" fill="#ff7e5f"/>
+  <circle cx="25" cy="6" r="2" fill="#feb47b"/>
+  
+  <!-- 身体装饰 -->
+  <rect x="16" y="36" width="16" height="6" rx="3" fill="url(#manusGradient)" opacity="0.7"/>
+  <circle cx="20" cy="39" r="1" fill="white"/>
+  <circle cx="24" cy="39" r="1" fill="white"/>
+  <circle cx="28" cy="39" r="1" fill="white"/>
+  
+  <!-- AI 连接线 -->
+  <path d="M6 24 Q12 20 18 22" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M30 22 Q36 20 42 24" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>
