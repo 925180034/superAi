@@ -1,48 +1,147 @@
 spring:
   application:
-    name: superAi
+    name: ai-fitness-assistant
   profiles:
     active: local
+
+  # 临时使用MySQL单数据源配置
+  datasource:
+    url: jdbc:mysql://rm-uf6x8ylc24tj73p2roo.rwlb.rds.aliyuncs.com/fitness_db
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 20000
+
+  # JPA 配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+#  # 多数据源配置
+#  datasource:
+#    # MySQL 主数据库（业务数据）
+#    primary:
+#      url: jdbc:mysql://rm-uf6x8ylc24tj73p2roo.rwlb.rds.aliyuncs.com/fitness_db
+#      username: ${MYSQL_USERNAME}
+#      password: ${MYSQL_PASSWORD}
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      hikari:
+#        maximum-pool-size: 20
+#        minimum-idle: 5
+#        connection-timeout: 20000
+#
+#    # PostgreSQL 向量数据库（保留原有配置用于RAG）
+#    vector:
+#      url: jdbc:postgresql://rm-cn-v3m4bkqae00056bo.rwlb.rds.aliyuncs.com:5432/ai_agent
+#      username: ${POSTGRES_USERNAME}
+#      password: ${POSTGRES_PASSWORD}
+#      driver-class-name: org.postgresql.Driver
+#      hikari:
+#        maximum-pool-size: 10
+#        minimum-idle: 2
+#
+#
+#  # JPA 配置
+#  jpa:
+#    # MySQL 主数据库配置
+#    primary:
+#      hibernate:
+#        ddl-auto: update
+#      show-sql: true
+#      properties:
+#        hibernate:
+#          dialect: org.hibernate.dialect.MySQL8Dialect
+#          format_sql: true
+
+#    # PostgreSQL 向量数据库配置
+#    vector:
+#      hibernate:
+#        ddl-auto: validate  # 向量数据库不需要自动创建表
+#      properties:
+#        hibernate:
+#          dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# AI 配置
   ai:
     dashscope:
-      api-key: your-api-key
+      api-key: ${DASHSCOPE_API_KEY}
       chat:
         options:
           model: qwen-plus
-#    mcp:
-#      client:
-##        sse:
-##          connections:
-##            server1:
-##              url: http://localhost:8127
-#         stdio:
-#         servers-configuration: classpath:mcp-servers.json
+          temperature: 0.7
 
-server:
-  port: 8123
-  servlet:
-    context-path: /api
-# springdoc-openapi
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
-  api-docs:
-    path: /v3/api-docs
-  group-configs:
-    - group: 'default'
-      paths-to-match: '/**'
-      packages-to-scan: com.yunhao.superai.controller
-# knife4j
-knife4j:
-  enable: true
-  setting:
-    language: zh_cn
+  # 向量数据库配置
+  vectorstore:
+    pgvector:
+      index-type: HNSW
+  #    dimensions: 1536
+      distance-type: COSINE_DISTANCE
+      max-document-batch-size: 10000
+      table-name: fitness_vector_store
+      schema-name: public
+      initialize-schema: true
 
-
-
-
-
-
+# 健身应用配置
+fitness:
+  rag:
+    similarity-threshold: 0.5
+    top-k: 3
+  chat:
+    max-history: 50
+# 日志配置
+logging:
+  level:
+    com.yunhao.superai: DEBUG
+    org.springframework.ai: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+#spring:
+#  application:
+#    name: ai-fitness-assistant
+#  profiles:
+#    active: local
+#  ai:
+#    dashscope:
+#      api-key: your-api-key
+#      chat:
+#        options:
+#          model: qwen-plus
+##    mcp:
+##      client:
+###        sse:
+###          connections:
+###            server1:
+###              url: http://localhost:8127
+##         stdio:
+##         servers-configuration: classpath:mcp-servers.json
+#
+#server:
+#  port: 8123
+#  servlet:
+#    context-path: /api
+## springdoc-openapi
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    tags-sorter: alpha
+#    operations-sorter: alpha
+#  api-docs:
+#    path: /v3/api-docs
+#  group-configs:
+#    - group: 'default'
+#      paths-to-match: '/**'
+#      packages-to-scan: com.yunhao.superai.controller
+## knife4j
+#knife4j:
+#  enable: true
+#  setting:
+#    language: zh_cn
+#
 

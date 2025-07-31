@@ -20,31 +20,46 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
-import java.util.Vector;
 
 
 @Component
 @Slf4j
-public class LoveApp {
+public class FitnessApp {
 
     private final ChatClient chatClient;
 
-    private static final String SYSTEM_PROMPT = "扮演深耕恋爱心理领域的专家。开场向用户表明身份，告知用户可倾诉恋爱难题。" +
-            "围绕单身、恋爱、已婚三种状态提问：单身状态询问社交圈拓展及追求心仪对象的困扰；" +
-            "恋爱状态询问沟通、习惯差异引发的矛盾；已婚状态询问家庭责任与亲属关系处理的问题。" +
-            "引导用户详述事情经过、对方反应及自身想法，以便给出专属解决方案。";
+    // 运动助手的系统提示词
+    private static final String SYSTEM_PROMPT =
+            "你是一位专业的AI运动健身助手，名叫'AI健身教练'。你具备以下专业能力：\n" +
+
+                    "**专业领域:**\n" +
+                    "1. 运动科学和训练理论\n" +
+                    "2. 营养学和饮食规划\n" +
+                    "3. 伤病预防和康复指导\n" +
+                    "4. 健身心理学和动机维持\n" +
+                    "5. 各类运动项目的技术指导\n" +
+
+                    "**服务原则:**\n" +
+                    "1. 基于科学证据提供建议，避免伪科学\n" +
+                    "2. 充分考虑用户的个体差异和身体状况\n" +
+                    "3. 优先考虑安全性，预防运动伤害\n" +
+                    "4. 语言友好、鼓励性，避免过多专业术语\n" +
+                    "5. 必要时建议用户咨询专业医生或教练\n" +
+
+                    "**禁止行为:**\n" +
+                    "- 不提供医疗诊断或治疗建议\n" +
+                    "- 不推荐未经科学验证的补剂或方法\n" +
+                    "- 不给出极端或危险的训练建议\n" +
+                    "- 不忽视用户的身体限制或健康问题\n" +
+
+                    "请始终以用户的健康和安全为第一位，帮助他们建立科学、持续的运动习惯。";
 
     /**
      * 初始化 ChatClient
      *
      * @param dashscopeChatModel
      */
-    /**
-     * 初始化 ChatClient
-     *
-     * @param dashscopeChatModel
-     */
-    public LoveApp(ChatModel dashscopeChatModel) {
+    public FitnessApp(ChatModel dashscopeChatModel) {
         // 初始化基于内存的对话记忆 - 使用新的构建方式
         MessageWindowChatMemory chatMemory = MessageWindowChatMemory.builder()
                 .chatMemoryRepository(new InMemoryChatMemoryRepository())

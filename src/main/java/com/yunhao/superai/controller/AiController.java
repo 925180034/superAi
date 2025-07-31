@@ -1,7 +1,7 @@
 package com.yunhao.superai.controller;
 
 import com.yunhao.superai.agent.YunManus;
-import com.yunhao.superai.app.LoveApp;
+import com.yunhao.superai.app.FitnessApp;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.tool.ToolCallback;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class AiController {
 
     @Resource
-    private LoveApp loveApp;
+    private FitnessApp FitnessApp;
 
     @Resource
     private ToolCallback[] allTools;
@@ -30,29 +30,29 @@ public class AiController {
 
 
     @GetMapping("/love_app/chat/sync")
-    public String doChatWithLoveAppSync(String message, String chatId) {
-        return loveApp.doChat(message, chatId);
+    public String doChatWithFitnessAppSync(String message, String chatId) {
+        return FitnessApp.doChat(message, chatId);
     }
 
     @GetMapping(value = "/love_app/chat/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> doChatWithLoveAppSSE(String message, String chatId) {
-        return loveApp.doChatByStream(message, chatId);
+    public Flux<String> doChatWithFitnessAppSSE(String message, String chatId) {
+        return FitnessApp.doChatByStream(message, chatId);
     }
 
     @GetMapping(value = "/love_app/chat/sentevent")
-    public Flux<ServerSentEvent<String>> doChatWithLoveAppSentEvent(String message, String chatId) {
-        return loveApp.doChatByStream(message, chatId)
+    public Flux<ServerSentEvent<String>> doChatWithFitnessAppSentEvent(String message, String chatId) {
+        return FitnessApp.doChatByStream(message, chatId)
                 .map(chunk -> ServerSentEvent.<String>builder()
                         .data(chunk)
                         .build());
     }
 
     @GetMapping("/love_app/chat/sse/emitter")
-    public SseEmitter doChatWithLoveAppSseEmitter(String message, String chatId) {
+    public SseEmitter doChatWithFitnessAppSseEmitter(String message, String chatId) {
         // 创建一个超时时间较长的 SseEmitter
         SseEmitter emitter = new SseEmitter(180000L); // 3分钟超时
         // 获取 Flux 数据流并直接订阅
-        loveApp.doChatByStream(message, chatId)
+        FitnessApp.doChatByStream(message, chatId)
                 .subscribe(
                         // 处理每条消息
                         chunk -> {
