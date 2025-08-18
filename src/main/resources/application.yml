@@ -6,9 +6,9 @@ spring:
   ai:
     dashscope:
       api-key: your-api-key
-      chat:
-        options:
-          model: qwen-plus
+#      chat:
+#        options:
+#          model: qwen-plus-latest
 #    mcp:
 #      client:
 ##        sse:

@@ -1,6 +1,6 @@
 package com.yunhao.superai;
 
-import com.yunhao.superai.rag.PgVectorVectorStoreConfig;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
