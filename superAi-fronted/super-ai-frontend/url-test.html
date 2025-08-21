@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL测试</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .result { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>健康聊天URL测试</h1>
+    
+    <button onclick="testURL()">测试URL构建</button>
+    <button onclick="testRealRequest()">测试真实请求</button>
+    
+    <div id="results"></div>
+    
+    <script type="module">
+        import API_BASE_URL, { API_ENDPOINTS } from './src/config/api.js';
+        import { sseRequest } from './src/utils/sseRequest.js';
+        
+        const resultsDiv = document.getElementById('results');
+        
+        window.testURL = () => {
+            const message = "头痛怎么办？";
+            const chatId = "test123";
+            
+            // 手动构建URL
+            const encodedMessage = encodeURIComponent(message);
+            const encodedChatId = encodeURIComponent(chatId);
+            const manualUrl = `${API_BASE_URL}${API_ENDPOINTS.healthChat}?message=${encodedMessage}&chatId=${encodedChatId}`;
+            
+            resultsDiv.innerHTML = `
+                <div class="result">
+                    <h3>URL构建测试</h3>
+                    <p><strong>API_BASE_URL:</strong> ${API_BASE_URL}</p>
+                    <p><strong>API_ENDPOINTS.healthChat:</strong> ${API_ENDPOINTS.healthChat}</p>
+                    <p><strong>原始消息:</strong> ${message}</p>
+                    <p><strong>编码后消息:</strong> ${encodedMessage}</p>
+                    <p><strong>完整URL:</strong> ${manualUrl}</p>
+                    <p><strong>URL检查:</strong> ${manualUrl.includes('?') ? '✅ 使用了查询参数' : '❌ 没有查询参数'}</p>
+                </div>
+            `;
+        };
+        
+        window.testRealRequest = async () => {
+            resultsDiv.innerHTML = '<div class="result">正在测试真实请求...</div>';
+            
+            try {
+                // 拦截console.log来捕获SSE请求中的URL日志
+                const originalLog = console.log;
+                let capturedLogs = [];
+                
+                console.log = (...args) => {
+                    capturedLogs.push(args.join(' '));
+                    originalLog.apply(console, args);
+                };
+                
+                // 使用SSE请求
+                await sseRequest.connect(
+                    API_ENDPOINTS.healthChat,
+                    '测试消息',
+                    'test-debug-123',
+                    {
+                        onMessage: (data) => {
+                            console.log('收到消息:', data);
+                        },
+                        onError: (error) => {
+                            console.error('请求错误:', error);
+                        },
+                        onComplete: () => {
+                            console.log('请求完成');
+                        }
+                    }
+                );
+                
+                // 恢复原始console.log
+                console.log = originalLog;
+                
+                resultsDiv.innerHTML = `
+                    <div class="result success">
+                        <h3>真实请求测试</h3>
+                        <h4>捕获的日志:</h4>
+                        ${capturedLogs.map(log => `<p>${log}</p>`).join('')}
+                    </div>
+                `;
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>真实请求失败</h3>
+                        <p><strong>错误:</strong> ${error.message}</p>
+                    </div>
+                `;
+            }
+        };
+    </script>
+</body>
+</html>

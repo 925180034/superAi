@@ -79,12 +79,19 @@ export class SSERequest {
       if (endpoint.includes('/manus/chat')) {
         await this.connectWithFetch(connectionKey, endpoint, { message, chatId }, callbacks);
       } else {
-        const params = new URLSearchParams();
-        params.append('message', message);
-        if (chatId) {
-          params.append('chatId', chatId);
-        }
-        const url = `${this.baseURL}${endpoint}?${params.toString()}`;
+        // 手动构建查询参数，确保正确的URL格式
+        const encodedMessage = encodeURIComponent(message);
+        const encodedChatId = encodeURIComponent(chatId || 'default');
+        const url = `${this.baseURL}${endpoint}?message=${encodedMessage}&chatId=${encodedChatId}`;
+        
+        console.log('🔍 构建的完整URL:', url);
+        console.log('📝 参数详情:', { 
+          baseURL: this.baseURL, 
+          endpoint, 
+          message: encodedMessage, 
+          chatId: encodedChatId 
+        });
+        
         await this.connectWithEventSource(connectionKey, url, callbacks);
       }
     } catch (error) {
