@@ -2,7 +2,7 @@
 const API_BASE_URL = import.meta.env.VUE_APP_API_BASE_URL || 
   (import.meta.env.MODE === 'production' 
     ? 'https://superiai-backend1-173372-4-1369330039.sh.run.tcloudbase.com/api'
-    : 'http://localhost:8123/api');
+    : '/api');
 
 export default API_BASE_URL;
 
