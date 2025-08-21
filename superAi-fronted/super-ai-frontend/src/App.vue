@@ -1,82 +1,57 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header class="app-header">
-    <div class="logo-title">
-      <h1>Super AI</h1>
-    </div>
-    <nav class="app-nav">
-      <router-link to="/" class="nav-link">主页</router-link>
-      <router-link to="/love" class="nav-link">AI 恋爱大师</router-link>
-      <router-link to="/manus" class="nav-link">AI 超级智能体</router-link>
-    </nav>
-  </header>
-  <main class="app-main">
+  <div id="app">
+    <!-- 删除任何残留的顶部导航栏 -->
+    <!-- 确保只有路由视图 -->
     <router-view />
-  </main>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-};
+  name: 'App'
+}
 </script>
 
 <style>
-.app-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--header-bg-color);
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: var(--box-shadow);
-  margin-bottom: 2rem;
-  border-radius: 8px;
+/* 全局样式重置 - 确保没有残留样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo-title h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-color);
+#app {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.app-nav {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--text-color-secondary);
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-link:hover {
-  color: var(--primary-color);
-}
-
-.nav-link.router-link-exact-active {
-  color: var(--primary-color);
-  font-weight: 600;
-}
-
+/* 删除任何可能的全局导航样式 */
+.global-nav,
+.top-nav,
+.main-nav,
+.app-header,
 .app-main {
-  padding: 0 2rem;
+  display: none !important;
 }
 
-@media (max-width: 768px) {
-  .app-header {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+/* Windows系统全局字体优化 */
+body {
+  font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Windows系统特殊处理 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, sans-serif;
   }
-  .app-main {
-    padding: 0 1rem;
-  }
+}
+
+/* Windows系统特殊样式 */
+body.windows-system {
+  font-size: 14px;
+  line-height: 1.6;
 }
 </style>

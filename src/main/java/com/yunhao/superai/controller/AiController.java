@@ -1,19 +1,19 @@
 package com.yunhao.superai.controller;
 
 import com.yunhao.superai.agent.YunManus;
+import com.yunhao.superai.app.HealthApp;
 import com.yunhao.superai.app.LoveApp;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.tool.ToolCallback;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import reactor.core.publisher.Flux;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ai")
@@ -81,6 +81,59 @@ public class AiController {
     public SseEmitter doChatWithManus(String message) {
         YunManus yunManus = new YunManus(allTools, dashscopeChatModel);
         return yunManus.runStream(message);
+    }
+
+    /**
+     * 流式调用 Manus 超级智能体 - 修正为支持POST方法
+     */
+    @PostMapping("/manus/chat")  // 改为 PostMapping
+    public SseEmitter doChatWithManus(@RequestBody Map<String, String> request) {
+        String message = request.get("message");
+        String chatId = request.get("chatId");  // 可选参数
+
+        YunManus yunManus = new YunManus(allTools, dashscopeChatModel);
+        return yunManus.runStream(message);
+    }
+
+    @Resource
+    private HealthApp healthApp;
+
+    /**
+     * 健康咨询 - 同步接口
+     */
+    @GetMapping("/health/chat/sync")
+    public String doChatWithHealthSync(String message, String chatId) {
+        return healthApp.doChat(message, chatId);
+    }
+
+    /**
+     * 健康咨询 - SSE流式接口
+     */
+    @GetMapping(value = "/health/chat/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<String> doChatWithHealthSSE(String message, String chatId) {
+        return healthApp.doChatByStream(message, chatId);
+    }
+
+    /**
+     * 健康咨询 - SseEmitter方式 (推荐使用这个)
+     */
+    @GetMapping("/health/chat/sse/emitter")
+    public SseEmitter doChatWithHealthSseEmitter(String message, String chatId) {
+        SseEmitter emitter = new SseEmitter(180000L); // 3分钟超时
+
+        healthApp.doChatByStream(message, chatId)
+                .subscribe(
+                        chunk -> {
+                            try {
+                                emitter.send(chunk);
+                            } catch (IOException e) {
+                                emitter.completeWithError(e);
+                            }
+                        },
+                        emitter::completeWithError,
+                        emitter::complete
+                );
+        return emitter;
     }
 
 }
